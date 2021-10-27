@@ -1,11 +1,22 @@
 const express = require('express');
 const app = express();
 
+const MongoClient = require('mongodb').MongoClient;
+const Mongos = 'mongodb+srv://jwkim:wjdal0926@cluster0.zw8e9.mongodb.net/todoapp?retryWrites=true&w=majority';
+var db;
+
+MongoClient.connect(Mongos, function(에러, client){
+    if(에러){ return console.log(에러)}
+
+    db = client.db('todoapp');
+
+    app.listen(8080, function(){
+        console.log('listening on 8080');
+    });
+})
 app.use(express.urlencoded({extended: true})) 
 
-app.listen(8080, function(){
-    console.log('listening on 8080');
-});
+
 
 //누군가가 /pet 으로 방문을 하면..
 //pet관련된 안내문을 띄워주자
@@ -28,6 +39,8 @@ app.get('/bueaty', (req, res) => {
 
 app.post('/add', (req, res) => {
     res.send('전송완료');
-    console.log(req.body.title);
-    console.log(req.body.date);
+
+    db.collection('post').insertOne(req.body, function(에러, 결과){
+        console.log('저장완료');
+    });
 })
