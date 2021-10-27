@@ -16,6 +16,7 @@ MongoClient.connect(Mongos, function(에러, client){
 })
 app.use(express.urlencoded({extended: true})) 
 
+app.set('viewengine', 'ejs');
 
 
 //누군가가 /pet 으로 방문을 하면..
@@ -25,12 +26,12 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/write', (res, req) => {
-    req.sendFile(__dirname + '/write.html')
+app.get('/write', (req, res) => {
+    res.sendFile(__dirname + '/write.html')
 });
 
-app.get('/pet', (요청, 응답) => {
-    응답.send('반갑습니다. 펫 용품을 쇼핑할 수 있는 페이지 입니다.');
+app.get('/pet', (req, res) => {
+    res.send('반갑습니다. 펫 용품을 쇼핑할 수 있는 페이지 입니다.');
 })
 
 app.get('/bueaty', (req, res) => {
@@ -40,7 +41,17 @@ app.get('/bueaty', (req, res) => {
 app.post('/add', (req, res) => {
     res.send('전송완료');
 
-    db.collection('post').insertOne(req.body, function(에러, 결과){
+    db.collection('post').insertOne({제목 : req.body.title, 날짜 : req.body.date}, function(에러, 결과){
         console.log('저장완료');
     });
+})
+
+app.get('/views/list', function(req, res){
+
+    db.collection('post').find().toArray(function(err, result){
+        console.log(result);
+        res.render('list.ejs', {posts : result});
+    });
+
+
 })
