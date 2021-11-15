@@ -1,20 +1,15 @@
 <template>
+  <div class="menu">
+    <a v-for="navLink in nav" :key="navLink"> {{ navLink }} </a>
+  </div>
+
   <img alt="Vue logo" src="./assets/logo.png">
-  <div>
-    원룸샵
+  
+  원룸샵
 
-    <h4 :class="클라스" :style="스타일">{{products[0]}} 원룸</h4>
-    <p>{{ price1 }} 만원</p>
-  </div>
-
-  <div>
-    <h4> {{ products[1] }}원룸</h4>
-    <p>{{ price2 }} 만원</p>
-  </div>
-
-    <div>
-    <h4> {{ products[2] }}원룸</h4>
-    <p>{{ price3 }} 만원</p>
+  <div v-for="(item,i) in 3" :key="item">
+    <h4> {{ products[i] }} </h4>
+    <p> {{ pay[i] }} </p>
   </div>
 
 </template>
@@ -25,12 +20,9 @@ export default {
   name: 'App',
   data(){
     return {
-      price1: 60,
-      price2: 100,
-      price3: 70,
-      스타일: 'color : blue',
-      클라스: '원룸맨',
-      products: ['역삼동원룸', '천호동원룸', '마포구원룸']
+      products: ['역삼동원룸', '천호동원룸', '마포구원룸'],
+      pay : [70, 100, 60],
+      nav: ['Home', 'Products', 'Show', 'About']
     }
   },
   components: {
@@ -45,6 +37,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.menu{
+  background-color: darkslateblue;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.menu a{
+  color: white;
+  padding: 10px;
 }
 </style>
