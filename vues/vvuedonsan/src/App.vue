@@ -7,9 +7,25 @@
   
   원룸샵
 
-  <div v-for="(item,i) in 3" :key="item">
-    <h4> {{ products[i] }} </h4>
-    <p> {{ pay[i] }} </p>
+  <div>  
+    <h4 :class="클라스" :style="스타일">{{products[0]}} 원룸</h4>
+    <p>{{ price1 }} 만원</p>
+    <button @click="increase0">허의매물신고</button>
+    <span>신고수 : {{ 신고수[0] }}</span>
+  </div>
+
+  <div>
+    <h4> {{ products[1] }}원룸</h4>
+    <p>{{ price2 }} 만원</p>
+    <button @click="increase1">허의매물신고</button>
+    <span>신고수 : {{ 신고수[1] }}</span>
+  </div>
+
+  <div>
+    <h4> {{ products[2] }}원룸</h4>
+    <p>{{ price3 }} 만원</p>
+    <button @click="increase2">허의매물신고</button>
+    <span>신고수 : {{ 신고수[2] }}</span>
   </div>
 
 </template>
@@ -20,9 +36,23 @@ export default {
   name: 'App',
   data(){
     return {
-      products: ['역삼동원룸', '천호동원룸', '마포구원룸'],
-      pay : [70, 100, 60],
+      신고수 : [0, 0, 0],
+      products: {
+        locate : ['역삼동원룸', '천호동원룸', '마포구원룸'],
+        pay : [70, 100, 60]
+      },
       nav: ['Home', 'Products', 'Show', 'About']
+    }
+  },
+  methods: {
+    increase0(){
+      this.신고수[0]++;
+    },
+    increase1(){
+      this.신고수[1]++;
+    },
+    increase2(){
+      this.신고수[2]++;
     }
   },
   components: {
