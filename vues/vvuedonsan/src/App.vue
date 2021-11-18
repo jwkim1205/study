@@ -4,28 +4,11 @@
   </div>  
   원룸샵
 
-  <div>  
-    <img src="./assets/img/room0.jpg" class="room-img">
-    <h4 :class="클라스" :style="스타일" @click="modal = true">{{products[0]}} 원룸</h4>
-    <p>{{ price1 }} 만원</p>
-    <button @click="increase0">허의매물신고</button>
-    <span>신고수 : {{ 신고수[0] }}</span>
-  </div>
-
-  <div>
-    <img src="./assets/img/room1.jpg" class="room-img">
-    <h4> {{ products[1] }}원룸</h4>
-    <p>{{ price2 }} 만원</p>
-    <button @click="increase1">허의매물신고</button>
-    <span>신고수 : {{ 신고수[1] }}</span>
-  </div>
-
-  <div>
-    <img src="./assets/img/room2.jpg" class="room-img">
-    <h4> {{ products[2] }}원룸</h4>
-    <p>{{ price3 }} 만원</p>
-    <button @click="increase2">허의매물신고</button>
-    <span>신고수 : {{ 신고수[2] }}</span>
+  <div v-for="items, i in onerooms" :key="items.id">
+    <img :src="onerooms[i].image" class="room-img">
+    <h4>{{ onerooms[i].title }}</h4>
+    <p>$ {{ onerooms[i].price }}</p>
+    <p>{{ onerooms[i].content }}</p>
   </div>
 
   <div class="black-bg" v-if="modal == true" @click="modal = false">
@@ -39,6 +22,7 @@
 </template>
 
 <script>
+import data from './assets/script/oneroom.js';
 
 export default {
   name: 'App',
@@ -51,6 +35,7 @@ export default {
       },
       nav: ['Home', 'Products', 'Show', 'About'],
       modal: false,
+      onerooms: data
     }
   },
   methods: {
