@@ -4,9 +4,9 @@
   </div>  
   원룸샵
 
-  <div v-for="items, i in onerooms" :key="items.id">
+  <div v-for="(items, i) in onerooms" :key="i">
     <img :src="onerooms[i].image" class="room-img">
-    <h4>{{ onerooms[i].title }}</h4>
+    <h4 @click="modal = true; num = i">{{ onerooms[i].title }}</h4>
     <p>$ {{ onerooms[i].price }}</p>
     <p>{{ onerooms[i].content }}</p>
   </div>
@@ -14,8 +14,10 @@
   <div class="black-bg" v-if="modal == true" @click="modal = false">
     <div class="white-bg">
       <button class="close" @click="modal = false">닫기</button>
-      <h4>상세페이지임</h4>
-      <p>상세페이지 내용임</p>
+      <img :src=" onerooms[num].image">
+      <h4>{{ onerooms[num].title }}</h4>
+      <p>{{ onerooms[num].price }}</p>
+      <p>{{ onerooms[num].content }}</p>
     </div>
   </div>
 
@@ -28,26 +30,13 @@ export default {
   name: 'App',
   data(){
     return {
-      신고수 : [0, 0, 0],
-      products: {
-        locate : ['역삼동원룸', '천호동원룸', '마포구원룸'],
-        pay : [70, 100, 60]
-      },
       nav: ['Home', 'Products', 'Show', 'About'],
       modal: false,
-      onerooms: data
+      onerooms: data,
+      num: 0,
     }
   },
   methods: {
-    increase0(){
-      this.신고수[0]++;
-    },
-    increase1(){
-      this.신고수[1]++;
-    },
-    increase2(){
-      this.신고수[2]++;
-    }
   },
   components: {
   }
@@ -61,6 +50,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+h4{
+  cursor: pointer;
 }
 
 .menu{
