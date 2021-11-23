@@ -2,34 +2,30 @@
   <div class="menu">
     <a v-for="navLink in nav" :key="navLink"> {{ navLink }} </a>
   </div>  
+  
+  <Discount />
+
   원룸샵
 
-  <div v-for="(items, i) in onerooms" :key="i">
-    <img :src="onerooms[i].image" class="room-img">
-    <h4 @click="modal = true; num = i">{{ onerooms[i].title }}</h4>
-    <p>$ {{ onerooms[i].price }}</p>
-    <p>{{ onerooms[i].content }}</p>
-  </div>
+  <!-- <Card /> -->
 
-  <div class="black-bg" v-if="modal == true" @click="modal = false">
-    <div class="white-bg">
-      <button class="close" @click="modal = false">닫기</button>
-      <img :src=" onerooms[num].image">
-      <h4>{{ onerooms[num].title }}</h4>
-      <p>{{ onerooms[num].price }}</p>
-      <p>{{ onerooms[num].content }}</p>
-    </div>
-  </div>
+  <Card @openModal="modal = true; num = $event" :onerooms="onerooms[i]" v-for="(oneroom, i) in onerooms " :key="i"/>
+
+  <Modal @closeModal="modal = false;" :onerooms="onerooms" :modal="modal" :num="num"/>
 
 </template>
 
 <script>
 import data from './assets/script/oneroom.js';
+import Discount from './components/Discount.vue';
+import Modal from './components/Modal.vue';
+import Card from './components/Card.vue';
 
 export default {
   name: 'App',
   data(){
     return {
+      Obj : {name: 'kim', age: 20},
       nav: ['Home', 'Products', 'Show', 'About'],
       modal: false,
       onerooms: data,
@@ -37,8 +33,12 @@ export default {
     }
   },
   methods: {
+
   },
   components: {
+    Discount,
+    Modal,
+    Card
   }
 }
 </script>
@@ -79,6 +79,7 @@ body{
 div{
   box-sizing: border-box;
 }
+
 .black-bg{
   width: 100%;
   height: 100%;
