@@ -4,13 +4,7 @@
             <img :src=" onerooms[num].image">
             <h4>{{ onerooms[num].title }}</h4>
             <!-- <input @input="month = $event.target.value" type="text" placeholder="개월 살겠습니다."> -->
-            <input v-model="month" type="text" placeholder="개월 살겠습니다.">
-            <textarea v-model="month"></textarea>
-            <select v-model="month">
-                <option>1</option>
-                <option>10</option>
-                <option>20</option>
-            </select>
+            <input v-model.number="month" type="text" placeholder="개월 살겠습니다.">
             <p>{{month}}개월 선택함 : {{ onerooms[num].price * month }}</p>
             <p>{{ onerooms[num].content }}</p>
             <Discount />
@@ -24,7 +18,17 @@ export default {
     name : 'Modal',
     data() {
         return {
-            month : 1,
+            month : 3,
+        }
+    },
+    watch: {
+        month(a, b){
+            if(a >= 13){
+                alert('13이상 입력하지 마시오');
+                a = b;
+            }else if(a == String){
+                alert('문자는 입력할 수 없습니다.')
+            }
         }
     },
     props: {
@@ -37,6 +41,13 @@ export default {
             this.$emit('closeModal')
         },
     },
+    beforeUpdate(){
+        if(this.month < 3){
+            alert('3개월 이상 선택해주세요')
+        }else if(this.month == -2){
+            this.month = 3
+        }
+    }
 }
 </script>
 
