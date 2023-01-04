@@ -4,34 +4,161 @@
     padding: 0px;
     border: 0px;
 }
-.container{
-    background-color: red;
+
+html, body{
+    position: relative;
+    height: 100%;
 }
-.container .text-box{
-    background-color: gray;
-    width: 70%;
-    height: 200px;
-    float: left;
-}
-.container .text-box .title{
-    font-weight: 600;
-    font-size: 18px;
+.main-background{
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background-image: url('https://codingapple.com/wp-content/uploads/2019/06/shoes.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1px;
 }
 
-.container .text-box .word{
+.main-title{
+    color: #ffffff;
+    font-size: 40px;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.main-content{
+    margin-top: 20px;
+    color: #ffffff;
+    padding: 0px 50px;
+}
+.main-button{
+    padding: 16px 32px;
+    border-radius: 8px;
+    background: white;
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    position: absolute;
+    bottom: 150px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 150px;
+}
+
+.sub-box{
+    position: absolute;
+    background-color: gray;
+    max-width: 700px;
+    width: 70%;
+    top: 80%;
+    height: 300px;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    border-radius: 8px;
+}
+
+.sub-box .sub-title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sub-box .sub-content{
+    font-size: 14px;
     font-weight: 300;
+    padding: 0px 32px;
+}
+
+
+
+.form-container{
+    position: fixed;
+    background-color: #333333;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.form{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 30px 20px;
+}
+
+.form h3{
+    font-size: 24px;
+    margin-bottom: 32px;
+}
+.form label{
+    display: block;
+    margin-bottom: 20px;
+}
+.form input{
+    display: block;
+    width: 100%;
+    border:  1px solid #ababab;
+    border-radius: 4px;
+    padding: 8px 12px;
     font-size: 14px;
 }
 
-.container .img-box{
-    background-color: lightblue;
-    width: 30%;
-    height: 200px;
-    float: left;
-    padding: 8px;
-}
-.container .img-box img{
+.label-email{
     display: block;
-    width: 100%;
-    height: 100%;
+}
+
+.full-name{
+    display: block;
+}
+.full-name .label-text{
+    display: block;
+    width: calc(50% - 8px);
+    float: left;
+    margin-right: 16px;
+}
+
+.full-name .label-text:last-child{
+    margin-right: 0px;
+}
+
+.label-message input{
+    display: block;
+    max-width: 100%;
+    height: 200px;
+    clear: both;
+    border: 1px solid #ababab;
+}
+.send{
+    overflow: auto;
+}
+.send label{
+    width: 50%;
+    float: left;
+    margin-bottom: 0px;
+}
+.send label::before{
+    content: '';
+    clear: both;
+}
+
+.label-checker input{
+    display: inline-block;
+    width: auto;
+}
+
+.label-sub button{
+    background-color: orange;
+    padding: 8px 16px;
+    float: right;
 }
